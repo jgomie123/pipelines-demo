@@ -37,7 +37,7 @@ public class User {
 
 	@Id
 	@Column(name = "user_id", nullable = false, unique = true, updatable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView({ JsonViewProfiles.User.class, JsonViewProfiles.Address.class })
 	private int id;
 
@@ -64,7 +64,9 @@ public class User {
     @JsonView(JsonViewProfiles.User.class)
 	private Set<Address> addresses;
     
-    
+    public User() {
+    	
+    }
 
 	public User(@Length(min = 1) String firstName, String lastName,
 			@Length(min = 5) @NotBlank @Pattern(regexp = "[a-zA-Z][a-zA-Z0-9]*") String username,

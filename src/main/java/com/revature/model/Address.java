@@ -32,7 +32,7 @@ import lombok.ToString;
 public class Address { // automatically hibernate will generate a table with the name of this class in lowercase
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="address_id")
 	@JsonView({ JsonViewProfiles.User.class, JsonViewProfiles.Address.class })
 	private int id;
@@ -49,6 +49,10 @@ public class Address { // automatically hibernate will generate a table with the
 	@ManyToMany(mappedBy = "addresses")
 	private Set<User> owners; // https://stackoverflow.com/questions/67886252/spring-boot-jpa-infinite-loop-many-to-many
 
+	public Address() {
+		
+	}
+	
 	public Address(String street, String secondary, @Length(min = 2, max = 2) String state, String city) {
 		super();
 		this.street = street;
